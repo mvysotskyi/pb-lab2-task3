@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+h1 .special {
+    color: #1db954;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #110e0e;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 30px;
+}
+
+.container {
+    max-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-container {
+    width: 100%;
+    height: 25vh;
+    border: none;
+    border-radius: 5px;
+    overflow-y: hidden;
+
+    padding: 0 30px;
+}
+
+.map-container.generated {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    border-radius: 5px;
+    padding: 50px 30px;
+}
+
+.map-container .map-placeholder {
+    color: red;
+}
+
+.error-message {
+    color: red;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.form-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+input:focus {
+    border: none;
+}
+
+.form-container .input {
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    padding: 12px 20px;
+    background-color: #fff;
+}
+
+.form-container .input:focus {
+    outline: none;
+}
+
+.form-container .submit {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-left: 10px;
+    background-color: #1ed760;
+    font-weight: 600;
+    color: #191414;
+
+    transition: background-color 0.1s ease-in-out;
+}
+
+.form-container .submit:hover {
+    background-color: #199344;
+    cursor: pointer;
+}
+
+.description {
+    font-size: 13px;
+    font-weight: 500;
+    width: 100%;
+
+    text-align: center;
+    color: #888888;
+    padding: 10px;
+}
+
+.description .special {
+    color: #1db954;
+}

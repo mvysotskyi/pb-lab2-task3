@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css"></link>
+    <script src="{{url_for('static', filename='custom.js')}}"></script>
+    <title>SpotiMap</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1><span class="special">Spoti</span>Map</h1>
+            <div class="form-container">
+                <form id="form" action="/map" method="POST">
+                    <input class="input" type="text" name="artist" placeholder="Type artist name">
+                    <input class="submit" type="submit" value="Search">
+                </form>
+            </div>
+            <div class="error-message"></div>
+            <div class="description">
+                Welcome to <span class="special">SpotiMap!</span><br>Consequuntur dolor laborum ex excepturi nesciunt odit voluptates sapiente vel, quia soluta modi doloremque quod aliquam dolorum deleniti possimus exercitationem pariatur minima.
+            </div>
+        </div>
+    </div>
+    <iframe src="/map-placeholder" class="map-container">
+    </iframe>
+</body>
+</html>
