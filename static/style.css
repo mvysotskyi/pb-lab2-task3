@@ -14,6 +14,10 @@ h1 .special {
     color: #1db954;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
     background-color: #110e0e;
@@ -63,14 +67,15 @@ body {
     padding: 50px 30px;
 }
 
-.map-container .map-placeholder {
-    color: red;
-}
-
 .error-message {
     color: red;
-    margin: 20px 0;
+    margin: 15px 0 10px 0;
     font-size: 14px;
+}
+
+.error-message::after {
+    content: ".";
+    opacity: 0;
 }
 
 .form-container {
@@ -95,10 +100,16 @@ input:focus {
     border-radius: 8px;
     padding: 12px 20px;
     background-color: #fff;
+    font-weight: 600;
 }
 
 .form-container .input:focus {
     outline: none;
+}
+
+.form-container .input::placeholder {
+    color: #a09f9f;
+    opacity: 1;
 }
 
 .form-container .submit {
@@ -110,12 +121,54 @@ input:focus {
     font-weight: 600;
     color: #191414;
 
-    transition: background-color 0.1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 85px;
+
+    transition: all 0.1s ease-in-out;
 }
 
 .form-container .submit:hover {
     background-color: #199344;
     cursor: pointer;
+}
+
+.form-container .submit:focus {
+    outline: none;
+}
+
+.form-container .submit.loading {
+    background-color: #199344;
+    cursor: default;
+}
+
+.form-container .submit.loading .text {
+    display: none;
+}
+    
+.form-container .submit.loading .loader {
+    display: initial;
+}
+
+.form-container .submit .loader {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 3px solid transparent;
+    border-top-color: #191414;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
 }
 
 .description {
@@ -130,4 +183,5 @@ input:focus {
 
 .description .special {
     color: #1db954;
+    font-weight: 600;
 }

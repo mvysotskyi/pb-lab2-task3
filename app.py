@@ -8,10 +8,12 @@ from flask import Flask, render_template
 from flask import request
 
 from map_creator import create_map, read_countries_dataset
-from spotify_api import get_token, get_artist_id,\
-    get_artist_top_track_id, get_available_markets, CLIENT_ID, CLIENT_SECRET
+from spotify_api import get_token, get_artist_id, get_artist_top_track_id, get_available_markets
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
+
+CLIENT_ID = "682a8d68a9904c2290cbce40adf8e2e0"
+CLIENT_SECRET = "8c250c51eab4438c99f5c849d68d4d3b"
 
 @app.route('/')
 def index():

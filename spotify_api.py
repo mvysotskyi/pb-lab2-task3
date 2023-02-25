@@ -5,9 +5,6 @@ Module contains functions to work with Spotify API.
 import base64
 import requests
 
-CLIENT_ID = "682a8d68a9904c2290cbce40adf8e2e0"
-CLIENT_SECRET = "8c250c51eab4438c99f5c849d68d4d3b"
-
 def get_token(client_id: str, client_secret: str) -> str:
     """
     Get token from Spotify API.

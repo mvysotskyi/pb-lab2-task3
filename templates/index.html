@@ -15,16 +15,21 @@
             <div class="form-container">
                 <form id="form" action="/map" method="POST">
                     <input class="input" type="text" name="artist" placeholder="Type artist name">
-                    <input class="submit" type="submit" value="Search">
+                    <button type="submit" class="submit">
+                        <div class="loader"></div>
+                        <span class="text">Search</span>
+                    </button>
                 </form>
             </div>
             <div class="error-message"></div>
             <div class="description">
-                Welcome to <span class="special">SpotiMap!</span><br>Consequuntur dolor laborum ex excepturi nesciunt odit voluptates sapiente vel, quia soluta modi doloremque quod aliquam dolorum deleniti possimus exercitationem pariatur minima.
+                Welcome to <span class="special">SpotiMap</span>!
+                <br>You can use this application to find out where your favorite artists are available on Spotify.
+                Just type in the name of the artist and click the search button. The application will show you a map with the locations about the artist's the most popular song availability.
             </div>
         </div>
     </div>
-    <iframe src="/map-placeholder" class="map-container">
+    <iframe scrolling="no" src="/map-placeholder" class="map-container">
     </iframe>
 </body>
 </html>
