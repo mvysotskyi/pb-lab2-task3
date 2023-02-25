@@ -25,10 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 else {
                     error_message.innerHTML = json_response["content"]
                 }
-                
+
                 setTimeout(() => {
                     submit_button.classList.remove("loading")
                 }, 800)
+            } else if(xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
+                error_message.innerHTML = "An error occured, please try again later."
+                submit_button.classList.remove("loading")
             }
         }
 

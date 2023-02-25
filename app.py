@@ -58,3 +58,6 @@ def map_page():
 
     world_map = create_map(points)
     return json.dumps({"status": 200, "content": world_map._repr_html_()})
+
+if __name__ == '__main__':
+    app.run(debug=True)
