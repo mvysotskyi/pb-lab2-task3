@@ -6,7 +6,7 @@ from folium import Map, Marker, Popup, Icon
 
 def read_countries_dataset(filepath: str) -> dict[str, tuple[float, float]]:
     """
-    Function docstring.
+    Function reads dataset with countries codes and locations.
     """
     countries = {}
     with open(filepath, 'r', encoding="utf-8") as file:
@@ -17,9 +17,9 @@ def read_countries_dataset(filepath: str) -> dict[str, tuple[float, float]]:
 
     return countries
 
-def create_map(points: list[tuple[float, float, str]]):
+def create_map(points: list[tuple[float, float, str]]) -> Map:
     """
-    Function docstring.
+    Function creates map with markers.
     """
     world_map = Map(
         location=[0, 0],
