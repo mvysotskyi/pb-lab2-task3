@@ -12,9 +12,44 @@ Project is based on the Spotify API and Flask framework.\
 The application is deployed on [PythonAnywhere](https://pythonanywhere.com/).
 
 
+## Structure
+```
+.
+├── app.py
+├── countries.csv
+├── LICENSE
+├── map_creator.py
+├── README.md
+├── requirements.txt
+├── screenshots
+│   ├── screenshot1.png
+│   └── screenshot2.png
+├── spotify_api.py
+├── static
+│   ├── custom.js
+│   └── style.css
+└── templates
+    ├── index.html
+    └── map-placeholder.html
+```
+
+
+### Main files
+
+```app.py``` - main file with Flask application.
+
+```spotify_api.py``` - module to work with Spotify API.
+
+```map_creator.py``` - module uses Foilum to create maps.
+
+---
+Also you can see there is a file ```countries.csv``` - database with countries codes and locations.
+
+
+
 # Getting Started
 
-Open link https://spotimap.herokuapp.com/ and enjoy!
+Open link https://mvysotskyi.pythonanywhere.com/ and enjoy!
 
 
 # Screeenshots
