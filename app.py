@@ -34,7 +34,6 @@ def map_page():
     """
     Function docstring.
     """
-    print(request.form)
     artist = request.form['artist']
     token = get_token(CLIENT_ID, CLIENT_SECRET)
 

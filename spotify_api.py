@@ -27,20 +27,24 @@ def get_artist_id(token: str, artist: str) -> str:
     """
     Get artist id from Spotify API.
     """
-    url = f"https://api.spotify.com/v1/search?q=artist:{artist}&type=artist"
+    url = "https://api.spotify.com/v1/search"
 
     response = requests.get(
         url,
+        params={"q": artist, "type": "artist"},
         headers={"Authorization": "Bearer " + token},
         timeout=10
     )
 
     result = response.json()
 
+    if "artists" not in result:
+        return None
+
     if len(result["artists"]["items"]) == 0:
         return None
 
-    return result["artists"]["items"][0]["id"] if "artists" in result else None
+    return result["artists"]["items"][0]["id"]
 
 def get_artist_top_track_id(token: str, artist_id: str) -> list[str]:
     """
