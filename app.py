@@ -53,11 +53,9 @@ def map_page():
         top_track = get_artist_top_track(token, artist_id, market=market)
         if not top_track:
             continue
-        
+
         if market in countries:
             points.append((countries[market][0], countries[market][1], top_track))
-        else:
-            print(market)
 
     world_map = create_map(points)
     return json.dumps({"status": 200, "content": world_map._repr_html_()})
