@@ -13,7 +13,7 @@ def read_countries_dataset(filepath: str) -> dict[str, tuple[float, float]]:
         file.readline()
         for line in file.readlines():
             line = [part.strip('"') for part in line.strip().split(',')]
-            countries[line[0]] = ((float(line[-2]), float(line[-1]), ", ".join(line[1:-2])))
+            countries[line[0]] = (float(line[-2]), float(line[-1]))
 
     return countries
 

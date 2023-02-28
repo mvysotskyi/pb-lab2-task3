@@ -8,7 +8,7 @@ from flask import Flask, render_template
 from flask import request
 
 from map_creator import create_map, read_countries_dataset
-from spotify_api import get_token, get_artist_id, get_artist_top_track_id, get_available_markets
+from spotify_api import *
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -34,26 +34,30 @@ def map_page():
     """
     Function docstring.
     """
-    artist = request.form['artist']
     token = get_token(CLIENT_ID, CLIENT_SECRET)
 
+    available_markets = get_available_markets(token)
+    countries = read_countries_dataset('countries.csv')
+
+    if not available_markets:
+        return json.dumps({"status": 404, "content" : "No available markets."})
+
+    artist = request.form['artist']
     artist_id = get_artist_id(token, artist)
 
     if not artist_id:
         return json.dumps({"status": 404, "content" : "No artist found."})
 
-    track_id = get_artist_top_track_id(token, artist_id)
-    available_markets = get_available_markets(token, track_id)
-
-    if not available_markets:
-        return json.dumps({"status": 404, "content" : "No available markets for this artist."})
-
-    countries = read_countries_dataset('countries.csv')
-
     points = []
-    for country, location in countries.items():
-        if country in available_markets:
-            points.append(location)
+    for market in available_markets:
+        top_track = get_artist_top_track(token, artist_id, market=market)
+        if not top_track:
+            continue
+        
+        if market in countries:
+            points.append((countries[market][0], countries[market][1], top_track))
+        else:
+            print(market)
 
     world_map = create_map(points)
     return json.dumps({"status": 200, "content": world_map._repr_html_()})

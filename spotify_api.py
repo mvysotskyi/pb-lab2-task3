@@ -46,11 +46,11 @@ def get_artist_id(token: str, artist: str) -> str:
 
     return result["artists"]["items"][0]["id"]
 
-def get_artist_top_track_id(token: str, artist_id: str) -> list[str]:
+def get_artist_top_track(token: str, artist_id: str, market: str = "US") -> list[str]:
     """
     Get artist top track id.
     """
-    url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?market=US"
+    url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?market={market}"
 
     response = requests.get(
         url,
@@ -59,17 +59,20 @@ def get_artist_top_track_id(token: str, artist_id: str) -> list[str]:
     )
 
     result = response.json()
+
+    if "tracks" not in result:
+        return None
 
     if len(result["tracks"]) == 0:
         return None
 
-    return result["tracks"][0]["id"] if "tracks" in result else None
+    return result["tracks"][0]["name"]
 
-def get_available_markets(token: str, track_id: str) -> list[str]:
+def get_available_markets(token: str) -> list[str]:
     """
     Tracks markets from Spotify API.
     """
-    url = f"https://api.spotify.com/v1/tracks/{track_id}"
+    url = "https://api.spotify.com/v1/markets"
 
     response = requests.get(
         url,
@@ -78,4 +81,4 @@ def get_available_markets(token: str, track_id: str) -> list[str]:
     )
 
     result = response.json()
-    return result["available_markets"] if "available_markets" in result else None
+    return result["markets"] if "markets" in result else None
