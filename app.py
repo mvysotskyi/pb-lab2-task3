@@ -2,18 +2,18 @@
 Module docstring.
 """
 
+import os
 import json
 
 from flask import Flask, render_template
 from flask import request
 
 from map_creator import create_map, read_countries_dataset
-from spotify_api import *
+from spotify_api import get_available_markets, get_artist_id, get_artist_top_track, get_token
+
+from dotenv import load_dotenv
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-
-CLIENT_ID = "682a8d68a9904c2290cbce40adf8e2e0"
-CLIENT_SECRET = "8c250c51eab4438c99f5c849d68d4d3b"
 
 @app.route('/')
 def index():
@@ -34,10 +34,11 @@ def map_page():
     """
     Function docstring.
     """
-    token = get_token(CLIENT_ID, CLIENT_SECRET)
-
-    available_markets = get_available_markets(token)
+    load_dotenv()
     countries = read_countries_dataset('countries.csv')
+
+    token = get_token(os.getenv("CLIENT_ID"), os.getenv("CLIENT_SECRET"))
+    available_markets = get_available_markets(token)
 
     if not available_markets:
         return json.dumps({"status": 404, "content" : "No available markets."})
@@ -49,6 +50,7 @@ def map_page():
         return json.dumps({"status": 404, "content" : "No artist found."})
 
     points = []
+
     for market in available_markets:
         top_track = get_artist_top_track(token, artist_id, market=market)
         if not top_track:
