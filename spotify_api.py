@@ -81,4 +81,4 @@ def get_available_markets(token: str) -> list[str]:
     )
 
     result = response.json()
-    return result["markets"] if "markets" in result else None
+    return result["markets"] if "markets" in result else []
